@@ -7,6 +7,5 @@ const Hello = () => {
   </h1>
 }
 
-
 var element = React.createElement(Hello, {});
 ReactDOM.render(element, document.querySelector('.container'));
