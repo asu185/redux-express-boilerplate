@@ -4,19 +4,18 @@ var definePlugin = new webpack.DefinePlugin({
 });
 
 module.exports = {
-  devtool: 'source-map',
   entry: {
     main: './public/src/main.js'
   },
   output: {
-    path: './public',
+    path: './public/dist',
     filename: 'bundle.js',
   },
   plugins: [definePlugin],
   resolve: {
     root: './public/src',
     extensions: ['', '.js', '.jsx'],
-  },  
+  },
   module: {
     loaders: [
       { test: /\.jsx?$/,
