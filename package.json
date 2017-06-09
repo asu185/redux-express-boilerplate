@@ -9,7 +9,7 @@
     "build": "NODE_ENV=prod webpack -p --config webpack.proc.config.js",
     "start": "npm run build & NODE_ENV=prod nodemon server/server.js"
   },
-  "author": "",
+  "author": "freddysu",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.0",

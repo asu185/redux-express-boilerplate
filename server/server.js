@@ -9,7 +9,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/', function(req, res) {
+app.get('/', function(req, res) {
   if (process.env.NODE_ENV === 'prod') {    
     res.sendFile(path.resolve('./public/dist/index.html'));
   } else {

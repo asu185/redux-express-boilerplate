@@ -5,7 +5,7 @@ var definePlugin = new webpack.DefinePlugin({
 
 module.exports = {
   entry: {
-    main: './public/src/main.js'
+    main: './public/src/main.jsx'
   },
   output: {
     path: './public/dist',
