@@ -1,3 +1,4 @@
+var path = require('path');
 var webpack = require('webpack');
 var definePlugin = new webpack.DefinePlugin({
   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
@@ -5,15 +6,15 @@ var definePlugin = new webpack.DefinePlugin({
 
 module.exports = {
   entry: {
-    main: './public/src/main.jsx'
+    main: path.resolve('public/src/main.jsx'),
   },
   output: {
-    path: './public/dist',
+    path: path.resolve('public/dist'),
     filename: 'bundle.js',
   },
   plugins: [definePlugin],
   resolve: {
-    root: './public/src',
+    root: path.resolve('public/src'),
     extensions: ['', '.js', '.jsx'],
   },
   module: {
