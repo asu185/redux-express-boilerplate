@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var definePlugin = new webpack.DefinePlugin({
   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
 });
+var CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -10,15 +11,29 @@ module.exports = {
   },
   output: {
     path: path.resolve('public/dist'),
-    filename: 'bundle.js',
+    publicPath: 'dist',
+    filename: '[name].js',
+    library: '[name]',
   },
-  plugins: [definePlugin],
+  plugins: [
+    definePlugin,
+    new CompressionPlugin({
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8
+    })
+  ],
   resolve: {
-    root: path.resolve('public/src'),
-    extensions: ['', '.js', '.jsx'],
+    modules: [
+      path.resolve('public/src'),
+      'node_modules'
+    ],
+    extensions: ['.js', '.jsx'],
   },
   module: {
-    loaders: [
+    rules: [
       { test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
@@ -26,9 +41,9 @@ module.exports = {
           presets: ['react', 'es2015'],
         },
       },
-      { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.scss$/, loaders: ['style', 'css', 'sass'] },
-      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+      { test: /\.(png|jpg|jpeg)$/, loader: 'url-loader?name=[hash].[ext]'},
     ],
   },
 }

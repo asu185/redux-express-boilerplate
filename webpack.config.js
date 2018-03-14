@@ -11,15 +11,19 @@ module.exports = {
   },
   output: {
     path: path.resolve('public'),
-    filename: 'bundle.js',
+    filename: '[name].js',
+    library: '[name]',
   },
   plugins: [definePlugin],
   resolve: {
-    root: path.resolve('public/src'),
-    extensions: ['', '.js', '.jsx'],
+    modules: [
+      path.resolve('public/src'),
+      'node_modules'
+    ],
+    extensions: ['.js', '.jsx'],
   },  
   module: {
-    loaders: [
+    rules: [
       { test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
@@ -27,9 +31,9 @@ module.exports = {
           presets: ['react', 'es2015'],
         },
       },
-      { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.scss$/, loaders: ['style', 'css', 'sass'] },
-      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+      { test: /\.(png|jpg|jpeg)$/, loader: 'url-loader?limit=1024&name=[hash].[ext]'},
     ],
   },
 }
