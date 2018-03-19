@@ -7,7 +7,7 @@ var CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: path.resolve('public/src/main.jsx'),
+    main: path.resolve('public/src/index.js'),
   },
   output: {
     path: path.resolve('public/dist'),

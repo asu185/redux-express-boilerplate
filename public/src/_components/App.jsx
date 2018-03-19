@@ -1,6 +1,5 @@
 import React from 'react';
-
-require('./App.scss');
+import './App.scss';
 
 class App extends React.Component {
 

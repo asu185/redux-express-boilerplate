@@ -4,9 +4,9 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack-server": "webpack-dev-server --hot --progress --colors --inline",
-    "dev": "NODE_ENV=dev npm run webpack-server & NODE_ENV=dev nodemon server/server.js",
-    "build": "NODE_ENV=production webpack -p --config webpack.proc.config.js",
+    "webpack-server": "webpack-dev-server --mode development --hot --progress --colors --inline",
+    "dev": "NODE_ENV=development npm run webpack-server & NODE_ENV=development nodemon server/server.js",
+    "build": "NODE_ENV=production webpack --mode production -p --config webpack.proc.config.js",
     "start": "NODE_ENV=production pm2 start server/server.js --name boilerplate"
   },
   "author": "freddysu",
