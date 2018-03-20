@@ -16,13 +16,31 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
-  if (process.env.NODE_ENV === 'production') {    
-    res.sendFile(path.resolve('./public/indices/index.html'));
+  var userAgent = req.headers['user-agent'];
+  
+  if (isMobile(userAgent)) {
+    if (process.env.NODE_ENV === 'production') {
+      res.sendFile(path.resolve('./public/indices/index-mobile.html'));
+    } else {
+      res.sendFile(path.resolve('./public/indices/index-mobile-dev.html'));
+    }
   } else {
-    res.sendFile(path.resolve('./public/indices/index-dev.html'));
+    if (process.env.NODE_ENV === 'production') {
+      res.sendFile(path.resolve('./public/indices/index-web.html'));
+    } else {
+      res.sendFile(path.resolve('./public/indices/index-web-dev.html'));
+    }
   }
 });
 
 app.listen(port, function() {
   console.log('Started listening on port', port);
 });
+
+function isMobile(userAgent) {
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)) {
+    return true;
+  } else {
+    return false;
+  }
+}

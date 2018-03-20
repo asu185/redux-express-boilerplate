@@ -1,12 +1,12 @@
 import React from 'react';
-import './App.scss';
+import 'style.scss';
 
 class App extends React.Component {
 
   render() {
     return (
       <div id="app" key="app">
-        ES6 Hello!
+        Mobile Hello!
       </div>
     );
   }

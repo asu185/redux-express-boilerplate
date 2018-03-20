@@ -7,7 +7,8 @@ var definePlugin = new webpack.DefinePlugin({
 module.exports = {
   devtool: 'source-map',
   entry: {
-    main: path.resolve('public/src/index.js'),
+    web: path.resolve('public/src/web/index.js'),
+    mobile: path.resolve('public/src/mobile/index.js'),
   },
   output: {
     path: path.resolve('public'),
